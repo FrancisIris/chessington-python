@@ -78,8 +78,8 @@ class King(Piece):
         row = current_square.row
         col = current_square.col
         moves=[]
-        for i in range(-1,1):
-            for j in range(-1,1):
+        for i in range(-1,2):
+            for j in range(-1,2):
                 test_square=Square(row+i,col+j)
                 if board.InBounds(test_square):
                     if board.get_piece(test_square)==None:

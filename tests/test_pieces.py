@@ -1,6 +1,6 @@
 from chessington.engine.board import Board
 from chessington.engine.data import Player, Square
-from chessington.engine.pieces import Pawn
+from chessington.engine.pieces import Pawn, King, Rook
 
 class TestPawns:
 
@@ -331,3 +331,62 @@ class TestPawns:
         # Assert
         assert Square.at(2, 3) not in moves
         assert Square.at(2, 5) not in moves
+
+class TestRook:
+    @staticmethod
+    def test_rook_vertical():
+        board = Board.empty()
+        rook = Rook(Player.WHITE)
+        rook_square = Square.at(3,5)
+        board.set_piece(rook_square,rook)
+
+        moves = rook.get_available_moves(board)
+
+        assert Square.at(0,5) in moves
+        assert Square.at(1,5) in moves
+        assert Square.at(2,5) in moves
+        assert Square.at(4,5) in moves
+        assert Square.at(5,5) in moves
+        assert Square.at(6,5) in moves
+        assert Square.at(7,5) in moves
+    
+    def test_rook_horizontal():
+        board = Board.empty()
+        rook = Rook(Player.WHITE)
+        rook_square = Square.at(5,3)
+        board.set_piece(rook_square,rook)
+
+        moves = rook.get_available_moves(board)
+
+        assert Square.at(5,0) in moves
+        assert Square.at(5,1) in moves
+        assert Square.at(5,2) in moves
+        assert Square.at(5,4) in moves
+        assert Square.at(5,5) in moves
+        assert Square.at(5,6) in moves
+        assert Square.at(5,7) in moves
+
+
+
+class TestKing:
+    @staticmethod
+    def test_king_can_move():
+
+        # Arrange
+        board = Board.empty()
+        king = King(Player.WHITE)
+        king_square = Square.at(3, 4)
+        board.set_piece(king_square, king)
+
+        # Act
+        moves = king.get_available_moves(board)
+        #have to go no
+        # Assert save anf commit pleaaase
+        assert Square.at(3, 3) in moves
+        assert Square.at(3, 5) in moves
+        assert Square.at(2, 3) in moves
+        assert Square.at(2, 4) in moves
+        assert Square.at(2, 5) in moves
+        assert Square.at(4, 3) in moves
+        assert Square.at(4, 4) in moves
+        assert Square.at(4, 5) in moves

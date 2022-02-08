@@ -77,3 +77,8 @@ class Board:
             self.set_piece(to_square, moving_piece)
             self.set_piece(from_square, None)
             self.current_player = self.current_player.opponent()
+
+    def InBounds(self,square):
+        if(square.row>7 or square.row<0 or square.col>7 or square.col<0):
+            return False
+        return True
